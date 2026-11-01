@@ -5,7 +5,11 @@
 (() => {
   if (customElements.get("sentient-panel")) return;
 
-  const KEYS = ["memories", "last_spoken", "likely_room", "watches", "routines", "visitors", "health", "hush", "guest_mode", "chime", "party_mode", "mind", "media_speakers", "house"];
+  
+// Translation helper (safe)
+const I18N = { fr: {}, en: {} };
+function t(key) { return key; } // fallback to key for now
+const KEYS = ["memories", "last_spoken", "likely_room", "watches", "routines", "visitors", "health", "hush", "guest_mode", "chime", "party_mode", "mind", "media_speakers", "house"];
   const esc = (t) => String(t == null ? "" : t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const hm = (iso) => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); };
   const day = (iso) => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString("en-GB", { day: "numeric", month: "short" }); };
